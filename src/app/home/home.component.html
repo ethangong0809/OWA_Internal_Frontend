@@ -1,0 +1,343 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '10px'}"></ngx-loading>
+<!-- <div class="container-fluid bg-light ">
+  <div class="row align-items-center" style="padding-left: 40px;">
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group ">
+        <input id="inputState " class="form-control" placeholder="TicketID">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3">
+      <div class="form-group">
+        <input id="inputState" class="form-control" placeholder="FirstName">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group">
+        <input id="inputState" class="form-control" placeholder="LastName">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group">
+        <input id="inputState" class="form-control" placeholder="MedicaidID">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group">
+        <input id="inputState" class="form-control" placeholder="Organization Name">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group">
+        <input id="inputState" class="form-control" placeholder="SSN">
+      </div>
+    </div>
+    <div class="col-md-1.5 pt-3" style="padding-left: 5px;">
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" >Search</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="categoryGrid">
+  <div class="categoryBG">
+    <div id="google_translate_element" class="translate pull-right">
+    </div>
+    <div class="clearfix wrap">
+
+      <div class="row ">
+        <div class="col-sm-12" *ngIf="showGeneral&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>General Requests</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingGeneral()" class="pendingBox">{{pendingGeneral}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedGeneral()" class="closedBox">{{closedGeneral}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="showMedallion&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Medallion 4.0</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingMed4()" class="pendingBox">{{pendingMed4}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedMed4()" class="closedBox">{{closedMed4}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="showCCCPlus&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>CCC Plus</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingCCC()" class="pendingBox">{{pendingCCCPlus}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedCCC()" class="closedBox">{{closedCCCPlus}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="showProcurement&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Procurements</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingProc()" class="pendingBox">{{pendingProc}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedProc()" class="closedBox">{{closedProc}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="showMedia&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Media Requests</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingMedia()" class="pendingBox">{{pendingMedia}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedMedia()" class="closedBox">{{closedMedia}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-12" *ngIf="showReportProblem&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Report a Problem</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingReportProblem()" class="pendingBox">{{pendingRepProb}}</p>
+              <p>Pending Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedReportProblem()" class="closedBox">{{closedRepProb}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="showElected&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Elected Official Requests</b></p>
+          </div>
+          <div class="col-md-2 pull-left"></div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openPendingElected()" class="pendingBox">{{pendingElected}}</p>
+              <p>Open Requests</p>
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup pull-left">
+            <div class="box1 square">
+              <p (click)="openClosedElected()" class="closedBox">{{closedElected}}</p>
+              <p>Closed Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 boxGroup" *ngIf="showElected&&lessThree">
+          <div class="col-sm-12">
+            <p class="boxHeading"><b>Admin</b></p>
+          </div>
+          <div class="col-md-4 pull-left"></div>
+          <div class="col-md-4 boxGroup pull-left">
+            <div class="box1 square">
+              <a [routerLink]="['/admin']"><i class="fa fa-user"
+                  style="font-size :600%; cursor: pointer; color: black;"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+          <div class="col-sm-4 boxGroup" *ngIf="showGeneral&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">General Requests</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingGeneral()">{{pendingGeneral}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedGeneral()">{{closedGeneral}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllGeneral()">{{totalGeneral}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showMedallion&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Medallion 4.0</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingMed4()">{{pendingMed4}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedMed4()">{{closedMed4}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllMed4()">{{totalMed4}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showCCCPlus&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">CCC Plus</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingCCC()">{{pendingCCCPlus}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedCCC()">{{closedCCCPlus}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllCCC()">{{totalCCCPlus}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showProcurement&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Procurements</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingProc()">{{pendingProc}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedProc()">{{closedProc}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllProc()">{{totalProc}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showMedia&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Media Requests</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingMedia()">{{pendingMedia}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedMedia()">{{closedMedia}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllMedia()">{{totalMedia}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showReportProblem&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Report a Problem</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingReportProblem()">{{pendingRepProb}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedReportProblem()">{{closedRepProb}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (click)="openAllReportProblem()">{{totalRepProb}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+          <div class="col-sm-4 boxGroup" *ngIf="showElected&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Elected Official Requests</p>
+              <div class="col-sm-6 pull-left">
+                <span class="dot pendingDot" (click)="openPendingElected()">{{pendingElected}}</span>
+                <p>Open</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span class="dot closedDot" (click)="openClosedElected()">{{closedElected}}</span>
+                <p>Closed</p>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+              <p class="dot totalDot" (clcik)="openAllElected()">{{totalElected}}</p>
+              <p>All</p>
+            </div> -->
+            </div>
+          </div>
+
+          <div class="col-sm-4 boxGroup" *ngIf="showElected&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">Admin</p>
+              <div>
+                <a [routerLink]="['/admin']"><i class="fa fa-user"
+                    style="font-size :600%; cursor: pointer; color: black;"></i></a>
+              </div>
+              <!-- <div class="col-sm-4 pull-left">
+                <p class="dot totalDot" (clcik)="openAllElected()">{{totalElected}}</p>
+                <p>All</p>
+              </div> -->
+            </div>
+          </div>
+        
+        <!-- <div class="col-sm-4 boxGroup" *ngIf="showAll&&!lessThree">
+            <div class="box1 square">
+              <p class="dotHeading">All Requests</p>
+              <div class="col-sm-6 pull-left">
+                <span (click)="openPendingAll()" class="dot pendingDot" >{{pendingAll}}</span>
+                <p>Pending</p>
+              </div>
+              <div class="col-sm-6 pull-left">
+                <span (click)="openClosedAll()" class="dot closedDot" >{{closedAll}}</span>
+                <p>Closed</p>
+              </div>
+              <div class="col-sm-4 pull-left">
+                <p class="dot totalDot" (click)="openAll()">{{totalAll}}</p>
+                <p>All</p>
+              </div>
+            </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

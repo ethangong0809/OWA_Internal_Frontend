@@ -1,0 +1,50 @@
+<!-- NAVBAR -->
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<!-- <div class="pos-f-t">
+    <nav class="navbar1">
+        <img src="assets/img/logo.png">
+    </nav>
+</div> -->
+
+<!-- LOGIN -->
+<div class="content" style="width: 30%;">
+  <div class="headerOfBox" style="text-align: center;">
+    <h2>Login</h2>
+  </div>
+
+    <!-- <alert></alert> -->
+    <div class="col-sm-12">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group" style="margin-bottom: 0;">
+        <br>
+        User Name
+        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          placeholder="User Name" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">User Name is required</div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom: 0;">
+        Password
+        <input type="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          placeholder="Password" />
+        <div><input type="checkbox" (click)="showPassword()" style="margin-top: .5vw;outline: none;">Show
+          Password</div>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+
+
+      <div>
+        <button [disabled]="loading" style="margin-top:0; background: black; border: black; float: right;" class="btn btn-primary" (click)="login()">Login</button>
+      </div>
+      <div style="margin-top: 25%;">
+        <div><a style="color:#3A539B;cursor: pointer;" (click)="forgotPass()">Forgot Password?</a></div>
+      </div>
+    </form>
+    <!-- <div><a (click)="getLogin()" style="cursor: pointer; width: 76% ; color:white" class="btn btn-primary">Sign in with Okta</a></div> -->
+  </div>
+</div>

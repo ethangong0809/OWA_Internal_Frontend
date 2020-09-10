@@ -1,0 +1,53 @@
+<div align="center" style="margin-top:3%">
+  <h2>DMAS OWA Management System</h2>
+</div>
+<div class="categoryGrid">
+  <div class="categoryBG">
+    <div class="clearfix wrap">
+      <div class="row">
+        <div class="col-sm-4 boxGroup" *ngIf="showMedallion">
+          <div class="box1 square"><label>Medallion 4.0</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showProcurement">
+          <div class="box1 square"><label>Procurements</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showReportProblem">
+          <div class="box1 square"><label>Report a Problem</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showElected">
+          <div class="box1 square"><label>Elected Official Request</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showCCCPlus">
+          <div class="box1 square"><label>Commonwealth Coordinated Care Plus</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showGeneral">
+          <div class="box1 square"><label>General Request</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup" *ngIf="showMedia">
+          <div class="box1 square"><label>Media Request</label>
+            <button class="btn btn-danger buttonControl" routerLink="/tables">Pending Request</button>
+            <button class="btn btn-success buttonControl" routerLink="/tables">Closed Request</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

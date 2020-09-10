@@ -1,0 +1,305 @@
+<div class="formBox">
+  <div class="form-row">
+    <div class="form-group col-md">
+      <h4 id="requestorInfo">Assignment</h4>
+    </div>
+  </div>
+  <p align="right">
+    <button class="btn btn-dark" *ngIf="showAdmin" [disabled]="edit" (click)="open(content)">New Assignment</button>
+  </p>
+  <div class="form-row">
+    <div class="form-group col-md">
+      <table class="table table-striped table-bordered">
+        <thead align="center">
+          <tr class="tableHeader">
+            <th style="width:20%">Division</th>
+            <th style="width:20%">Assign To</th>
+            <th style="width:20%">Email</th>
+            <th style="width:10%">Start Date</th>
+            <th style="width:10%">Expected Close Date</th>
+            <th style="width:5%">Comment</th>
+            <th style="width:5%">Status</th>
+            <th style="width:5%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curAssignment of getAssignmentsList; let i=index">
+            <td>
+              <input class="form-control" name="curassignDivision{i}" [(ngModel)]="curAssignment.division" readonly>
+            </td>
+            <td>
+              <input class="form-control" name="curassignAssign{i}" [(ngModel)]="curAssignment.username" readonly>
+            </td>
+            <td>
+              <input class="form-control" name="curassignEmail{i}" [(ngModel)]="curAssignment.email" readonly>
+            </td>
+            <td>
+              <input class="form-control" name="curassignStartdate{i}" [(ngModel)]="curAssignment.startDate" readonly>
+            </td>
+            <td>
+              <input class="form-control" name="curassignEnddate{i}" [(ngModel)]="curAssignment.expectedEndDate"
+                readonly>
+            </td>
+            <td align="center">
+              <i class="fa fa-comment" aria-hidden="true" style="font-size: 140%;cursor: pointer;" title="Comment"
+                (click)="open1(showComment,i)"></i>
+            </td>
+            <td align="center">{{curAssignment.status}}</td>
+            <td align="center">
+              <i  class="fa fa-edit" aria-hidden="true" style="font-size: 140%;cursor: pointer;" title="Edit"
+                (click)="openEDIT(editContent,curAssignment)" ></i>&nbsp;
+              <i *ngIf="showAdmin" class="fa fa-trash" aria-hidden="true" style="font-size: 140%;cursor: pointer;" title="Delete"
+                (click)="openDelete(content2);copyValue(curAssignment);"></i>
+            </td>
+          </tr>
+          <!-- <tr *ngFor="let person of persons; let i = index">
+            <td>
+              <input class="form-control" type="text" (change)="checkDivision1($event.target.value)" name="person{{i}}.division" [(ngModel)]="person.division">
+            </td>
+            <td>
+              <input class="form-control" type="text" (change)="checkUsername1($event.target.value)" name="person{{i}}.username" [(ngModel)]="person.username">
+            </td>
+            <td>
+              <input class="form-control" type="text" (change)="checkEmail1($event.target.value)" name="person{{i}}.email" [(ngModel)]="person.email">
+            </td>
+            <td>
+              <my-date-picker name="person{{i}}.startDate" (dateChanged)="getStartDate1($event)" [(ngModel)]="person.startDate" placeholder="mm/dd/yyyy"
+                [options]="myDatePickerOptions1">
+              </my-date-picker>
+            </td>
+            <td>
+              <my-date-picker name="person{{i}}.expectedEndDate" (dateChanged)="getexceptDate1($event)" [(ngModel)]="person.expectedEndDate"
+                placeholder="mm/dd/yyyy" [options]="myDatePickerOptions2">
+              </my-date-picker>
+            </td>
+
+            <td align="center">
+              <i class="fa fa-trash" aria-hidden="true" style="font-size: 140%; cursor: pointer" title="Delete" (click)="deletePerson(i)"></i>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<form #contentForm="ngForm">
+  <ng-template #content id="content" let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color:black">
+      <h4 class="modal-title">Assign To</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Division
+            <font color="red">*</font>
+          </label>
+          <!-- <input class="form-control" type="text" name="assignDivision" [(ngModel)]="person.division" required> -->
+          <select id="inputDivision" name="division" [(ngModel)]="person.division" class="form-control" required>
+            <option [ngValue]="undefined" selected> Choose... </option>
+            <option value="Provider Reimbursement Division">Provider Reimbursement Division</option>
+            <option value="Program Operations Division">Program Operations Division</option>
+            <option value="A Division">Human Resource Disision</option>
+            <option value="B Division">Program Integrity Division</option>
+            <option value="C Division">Procuement and Contract Mgmnt Division</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6" style="z-index: 1;">
+          <label>Assign To
+            <font color="red">*</font>
+          </label>
+
+          <ng-autocomplete #ngAutoCompleteStatic [data]="usersTemplate" name="userNameSearch" placeHolder="Please enter name to assign"
+            [(ngModel)]="person.username" [itemTemplate]="itemTemplateStatic" (selected)='setEmail($event)'
+            notFoundText="Not found" (inputChanged)='onChangeSearch($event)' [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label>Email
+            <font color="red">*</font>
+          </label>
+          <input class="form-control" type="text" name="assignEmail" [(ngModel)]="person.email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Start Date
+            <font color="red">*</font>
+          </label>
+          <my-date-picker name="startDate" [(ngModel)]="personStartDate" (dateChanged)="getStartDate($event)"
+            placeholder="mm/dd/yyyy" [options]="myDatePickerOptions1" required>
+          </my-date-picker>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Expected Close Date
+            <font color="red">*</font>
+          </label>
+          <my-date-picker name="expectedEndDate" [(ngModel)]="personExpectedEndDate"
+            (dateChanged)="getexceptDate($event)" placeholder="mm/dd/yyyy" [options]="myDatePickerOptions2" required>
+          </my-date-picker>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md" id="description">
+          <label for="number">Comments
+            <font color="red">*</font>
+          </label>
+          <!-- <textarea id="summernote" ngModel name="comments22" [ngxSummernote]="config" [(ngModel)]="person.assigncomment"
+             required></textarea> -->
+          <tinymce name="description" [(ngModel)]="person.assigncomment" [config]="config" required="required"></tinymce>Remaining
+          {{5000 -len}}
+        </div>
+      </div>
+      <p align="right">
+        <button type="cancel" class="btn btn-dark" (click)="c();">Cancel</button>
+        <button class="btn submitButton btn-dark" style="margin-left: 2px;" [disabled]="!contentForm.form.valid"
+          (click)="setAssignments();c()">Assigned</button>
+      </p>
+    </div>
+  </ng-template>
+</form>
+
+<ng-template #itemTemplateStatic let-item style="z-index: 1">
+  <a [innerHTML]="item"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+</ng-template>
+
+<form #editForm="ngForm">
+  <ng-template #editContent let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color:black">
+      <h4 class="modal-title">Assignment</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Division</label>
+          <input class="form-control" type="text" name="curassignDivision" [(ngModel)]="editAssign.division" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Assign To</label>
+          <input class="form-control" type="text" name="curassignAssign" [(ngModel)]="editAssign.username" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label>Email</label>
+          <input class="form-control" type="text" name="curassignEmail" [(ngModel)]="editAssign.email" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Start Date
+            <font color="red">*</font>
+          </label>
+          <my-date-picker name="curStartDate" [(ngModel)]="curStartDate" (dateChanged)="getStartDateE($event)"
+            placeholder="mm/dd/yyyy" [options]="myDatePickerOptions1" [disabled]="true">
+          </my-date-picker>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Expected Close Date
+            <font color="red">*</font>
+          </label>
+          <my-date-picker name="curExpectedEndDate" [(ngModel)]="curExpectedEndDate"
+            (dateChanged)="getexceptDateE($event)" (change)="checkExpect()" placeholder="mm/dd/yyyy"
+            [options]="myDatePickerOptions3" required>
+          </my-date-picker>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Assignment Status
+            <font color="red">*</font>
+          </label>
+          <select class="form-control" name="status" [(ngModel)]="editAssign.status"
+            (change)="editAssign.status = $event.target.value" required>
+            <option value="Open">In progress</option>
+            <option value="Closed">Completed</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md" id="description">
+          <label for="number">Comments
+          </label>
+          <!-- <textarea id="summernote" ngModel name="comments122" [ngxSummernote]="config" [(ngModel)]="editAssign.assigncomment"
+              [ngxSummernote] required></textarea> -->
+          <tinymce name="description" [(ngModel)]="editAssign.assigncomment" [config]="config" required='required'>
+          </tinymce>Remaining {{5000 -len}}
+        </div>
+      </div>
+      <p align="right">
+        <button type="cancel" class="btn btn-dark" (click)="c();">Cancel</button>&nbsp;
+        <button class="btn submitButton btn-dark" [disabled]="!editForm.form.valid"
+          (click)="openUpdate(content1);c()">Save</button>
+      </p>
+    </div>
+  </ng-template>
+</form>
+
+<ng-template #showComment let-c="close" let-d="dismiss">
+  <div class="modal-header" style="background-color:black">
+    <h4 class="modal-title">Description</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="form-group col-md" id="description">
+        <div id="summernote" style="height: auto;" [ngxSummernoteView]="assignComment.notes" readonly></div>
+      </div>
+    </div>
+    <p align="right">
+      <button type="close" class="btn submitButton" (click)="c()"
+        style="background-color: black;color: white;margin-top: 2%">Close</button>
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #content1 let-c="close" let-d="dismiss">
+  <div class="modal-header" style="background-color:black">
+    <h4 class="modal-title" style="background-color:black">Edit Assignment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-weight: bold">Do you want to save these changes?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark button-close" (click)="c()">Cancel</button>
+    <button type="button" class="btn btn-outline-dark button-yes" style="background-color:black" (click)="updateAssigment();c();">OK</button>
+  </div>
+</ng-template>
+<ng-template #content2 let-c="close" let-d="dismiss">
+  <div class="modal-header" style="background-color:black">
+    <h4 class="modal-title" style="background-color:black">Delete Assignment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-weight: bold">Do you want to delete this assignment?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark button-close" (click)="c()">Cancel</button>
+    <button type="button" class="btn btn-outline-dark button-yes" style="background-color:black" (click)="deleteAssignment();c();">OK</button>
+  </div>
+</ng-template>
+<ng-template #content3 let-c="close" let-d="dismiss">
+  <div class="modal-header" style="background-color:black">
+    <h4 class="modal-title" style="background-color:black">New Assignment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-weight: bold">Do you want to submit this assignment?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark button-close" (click)="c()">Cancel</button>
+    <button type="button" class="btn btn-outline-dark button-yes" style="background-color:black" (click)="setAssignments();c()">OK</button>
+  </div>
+</ng-template>

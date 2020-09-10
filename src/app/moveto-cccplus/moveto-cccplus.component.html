@@ -1,0 +1,60 @@
+<ng-template #content1 let-c="close" let-d="dismiss">
+  <div class="modal-header" style="background-color:black">
+    <h4 class="modal-title" style="background-color:black">Success</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-weight: bold">Do you want to move it?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark button-close" (click)="c()">Cancel</button>
+    <button type="button" class="btn btn-outline-dark button-yes" style="background-color:black" (click)="changeForm(content1);redirect();c();">Confirm</button>
+  </div>
+</ng-template>
+<form #moveForm="ngForm" (ngSubmit)="functionName">
+<div class="formBox">
+<div class="form-row" *ngIf="hidePro">
+  <div class="form-group col-md-6">
+<input type="radio" class="radio"  name="contact1" value="1" [(ngModel)]="data.formID" [disabled]="edit" required>
+<label *ngIf="hidePro">Procurement </label>
+</div>
+</div>
+<div class="form-row" *ngIf="hideMed4">
+<div class="form-group col-md-6">
+  <input type="radio" class="radio"  name="contact1" value="3" [disabled]="edit"  required [(ngModel)]="data.formID">
+<label *ngIf="hideMed4" >Medallion 4.0</label>
+</div>
+</div>
+<div class="form-row" *ngIf="hideGeneral">
+  <div class="form-group col-md-6">
+    <input type="radio"  class="radio" name="contact1" value="4" [disabled]="edit" required [(ngModel)]="data.formID">
+    <label *ngIf="hideGeneral">General Request</label>
+  </div>
+</div>
+<div class="form-row" *ngIf="hideCCC">
+  <div class="form-group col-md-6">
+    <input type="radio"  class="radio" name="contact1" value="2" [disabled]="edit"  [(ngModel)]="data.formID">
+    <label *ngIf="hideCCC">CCC Plus </label>
+  </div>
+</div>
+<div class="form-row" >
+  <div class="form-group col-md-6">
+    <input type="radio" [disabled]="true"  class="radio" name="contact1">
+    <label >CCMS (Coming soon)</label>
+  </div>
+</div>
+<div class="form-row" >
+  <div class="form-group col-md-6">
+    <input type="radio" [disabled]="true"   class="radio" name="contact1">
+    <label >Pinks (Coming soon)</label>
+  </div>
+</div>
+</div>
+
+  
+<p align="right">
+  <button type="submit" style="margin-left: 2px;" class="btn btn-dark" [disabled]="!moveForm.form.valid" (click)="open(content1)">Move</button>
+</p>
+</form>

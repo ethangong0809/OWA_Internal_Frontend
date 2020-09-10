@@ -1,0 +1,25 @@
+/* .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+} */
+
+#dropdownMenuLink{
+    cursor: pointer;
+    margin-left: 29px;
+    width: 138%;
+    height: 37px;
+}
+.dropdowns{
+    margin-left: 5%;
+}
+
+th{
+    background-color: black;
+    color: white;
+}
+
+tr:nth-child(odd) {background: #EBEBEB;}
+
+.table{
+    width: 100% !important;
+}

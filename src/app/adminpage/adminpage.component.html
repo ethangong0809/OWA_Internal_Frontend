@@ -1,0 +1,38 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '10px'}"></ngx-loading>
+
+<div class="categoryGrid">
+  <div class="categoryBG">
+    <div class="clearfix wrap" style="padding-top: 0;">
+      <div class="row">
+        <div class="col-sm-12" align="center">
+          <p style="font-size: 40px; font-weight: 500;"><u>Admin Page</u></p>
+        </div>
+        <div class="col-sm-4 boxGroup">
+          <div class="box1 square">
+            <p class="dotHeading">All Requests</p>
+            <div class="col-sm-6 pull-left">
+              <span class="dot pendingDot" (click)="openPendingAll()">{{pendingAll}}</span>
+              <p>Open</p>
+            </div>
+            <div class="col-sm-6 pull-left">
+              <span class="dot closedDot" (click)="openClosedAll()">{{closedAll}}</span>
+              <p>Closed</p>
+            </div>
+            <!-- <div class="col-sm-4 pull-left">
+            <p class="dot totalDot" (click)="openAll()">{{totalGeneral}}</p>
+            <p>All</p>
+          </div> -->
+          </div>
+        </div>
+        <div class="col-sm-4 boxGroup">
+          <div class="box1 square">
+            <p class="dotHeading">Reports</p>
+            <div>
+              <a><i class="fa fa-file-text-o" style="font-size :600%; cursor: pointer; color: black;"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

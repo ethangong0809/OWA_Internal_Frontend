@@ -1,0 +1,3319 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '10px'}"></ngx-loading>
+<div id="google_translate_element" class="translate pull-right">
+</div>
+<form class="p1">
+  <div class="p2">
+    <span id="heading">
+      Report a Problem
+    </span>
+  </div>
+  <div class="doNotPrint" align="right">
+    <i class="fa fa-print" aria-hidden="true" (click)="onPrint()" title="Print this page" style="font-size:120%; cursor: pointer "></i>
+    <!-- <button (click)="onPrint()">Print</button> -->
+  </div>
+  <form class="form" #editPro="ngForm">
+    <div class="p3">
+      <!-- <p align="left">
+        <Button class="btn btn-secondary btn-lg" style="background:#e9ecef;color: black" text="navigateBack" (click)="navigateBack()">Back</Button>
+      </p> -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Ticket ID</label>
+          <input class="form-control" autocomplete="off" type="text" name="tcktid13513" [(ngModel)]="requestor.ticketID" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Status</label>
+          <input class="form-control" type="text" autocomplete="off" name="status132423" [(ngModel)]="requestor.status" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Last updated on</label>
+          <input class="form-control" autocomplete="off" type="text" name="lastUpdatedTime13423" [(ngModel)]="requestor1.updatedTime"
+            readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Last updated by</label>
+          <input class="form-control" type="text" autocomplete="off" name="lastUpdatedPerson35345" [(ngModel)]="requestor1.updatedBy"
+            readonly>
+        </div>
+      </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border:black;">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+            aria-selected="true" (click)="originalTab()">Original View</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+            aria-selected="false" (click)="editTab()">Editable View</a>
+          <a class="nav-item nav-link" id="nav-split-tab" data-toggle="tab" href="#nav-split" role="tab" aria-controls="nav-split"
+            aria-selected="false" (click)="splitView()">Split View</a>
+          <a class="nav-item nav-link" id="nav-insert-tab" data-toggle="tab" href="#nav-insert" role="tab" aria-controls="nav-insert"
+            aria-selected="false" (click)="insertView()">Documents</a>
+          <a class="nav-item nav-link" id="nav-history-tab" data-toggle="tab" href="#nav-history" role="tab" aria-controls="nav-history"
+            aria-selected="false" (click)="commentHistoryView()">Comments History</a>
+          <a class="nav-item nav-link" id="nav-assign-tab" data-toggle="tab" href="#nav-assign" role="tab" aria-controls="nav-profile"
+            aria-selected="false" (click)="assignView()">Assign To</a>
+            <a class="nav-item nav-link" *ngIf="showNav" id="nav-assign-tab" data-toggle="tab" href="#nav-move" role="tab" aria-controls="nav-profile"
+            aria-selected="false" (click)="moveView()">Move To</a>
+          <a class="nav-item nav-link" *ngIf="showNav" id="nav-assign-tab" data-toggle="tab" href="#nav-move" role="tab"
+            aria-controls="nav-profile" aria-selected="false" (click)="closedTicket()">Close Ticket</a> 
+          
+        </div>
+      </nav>
+
+      <div class="formBox">
+        <div *ngIf="showResidency">
+          <h4 id="requestorInfo">Requestor's Residency</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Resident of Virginia</label>
+              <input class="form-control" type="text" autocomplete="off" name="vaRes235234" [(ngModel)]="requestor.vaResident" required
+                readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Request category</label>
+              <input class="form-control" type="text" autocomplete="off" name="category1231" [(ngModel)]="reportproblem.category" required
+                readonly>
+              <textarea class="form-control" style="margin-top:2%" rows="5" type="text" autocomplete="off" name="otherText123423" *ngIf="OtherText"
+                [(ngModel)]="reportproblem.categoryOther" readonly></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showMedicaidOriginal" id="showMedicaidOriginal">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's first name</label>
+              <input class="form-control" autocomplete="off" type="text" name="memusrnm234534" [(ngModel)]="reportproblem.memFirstname"
+                readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's last name</label>
+              <input class="form-control" type="text" autocomplete="off" name="memlname345345" [(ngModel)]="reportproblem.memLastname"
+                required readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's phone number</label>
+              <input class="form-control" type="text" autocomplete="off" name="memphone12342" [(ngModel)]="reportproblem.memPhone" mask='000-000-0000'
+                readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's email</label>
+              <input class="form-control" type="email" name="mememailUser567456" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                type="email" [(ngModel)]="reportproblem.memEmail" readonly>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtd456456" [(ngModel)]="requestor.preferredContact" disabled="true">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address17568" [(ngModel)]="requestor.address1" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address2789789" [(ngModel)]="requestor.address2" readonly> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="city78979" [(ngModel)]="requestor.city" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input class="form-control" type="text" name="state78979" [(ngModel)]="requestor.state" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip2789789" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's ID number</label>
+              <input class="form-control" type="text" name="MedId78978" [(ngModel)]="reportproblem.memMedID" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's social security number</label>
+              <input class="form-control" type="text" name="MedSSN789789" [(ngModel)]="reportproblem.memSSN" mask='000-00-0000' readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's date of birth</label>
+              <input class="form-control" type="text" name="MedDOB567567" [(ngModel)]="reportproblem.memDOB" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="showAssistingOriginal" id="showAssistingOriginal">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Relationship to the medicaid member</label>
+              <input class="form-control" type="text" autocomplete="off" name="relationship3253" [(ngModel)]="reportproblem.relationship"
+                required readonly>
+              <textarea class="form-control" style="margin-top:2%" rows="3" type="text" autocomplete="off" name="otherRelationship2436"
+                *ngIf="otherRelationship" [(ngModel)]="reportproblem.relationshipOther" readonly></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's first name</label>
+              <input class="form-control" autocomplete="off" type="text" name="firstName12346234" [(ngModel)]="requestor.firstName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name</label>
+              <input class="form-control" type="text" autocomplete="off" name="lastName1123123" [(ngModel)]="requestor.lastName" required
+                readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone</label>
+              <input class="form-control" type="text" autocomplete="off" name="phone14346345" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email</label>
+              <input class="form-control" type="email" name="emailUser34645" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                type="email" [(ngModel)]="requestor.email" readonly>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtd56456" [(ngModel)]="requestor.preferredContact" disabled="true">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organ24654" [(ngModel)]="requestor.organizationName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" name="fax145745" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address1765745" [(ngModel)]="requestor.address1" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address245723" [(ngModel)]="requestor.address2" readonly> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="city3465" [(ngModel)]="requestor.city" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input class="form-control" type="text" name="state7568" [(ngModel)]="requestor.state" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip28568" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+            </div>
+          </div>
+          <h4 id="requestorInfo">Medicaid Member's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's first name</label>
+              <input class="form-control" autocomplete="off" type="text" name="memusrnm34765" [(ngModel)]="reportproblem.memFirstname"
+                readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's last name</label>
+              <input class="form-control" type="text" autocomplete="off" name="memlname85695" [(ngModel)]="reportproblem.memLastname" required
+                readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's phone number</label>
+              <input class="form-control" type="text" autocomplete="off" name="memphone25695" [(ngModel)]="reportproblem.memPhone" mask='000-000-0000'
+                readonly>
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's email</label>
+              <input class="form-control" type="email" name="mememailUser467957" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                type="email" [(ngModel)]="reportproblem.memEmail" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's ID number</label>
+              <input class="form-control" type="text" name="MedId3457" [(ngModel)]="reportproblem.memMedID" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's social security number</label>
+              <input class="form-control" type="text" name="MedSSN56489" [(ngModel)]="reportproblem.memSSN" mask='000-00-0000' readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's date of birth</label>
+              <input class="form-control" type="text" name="MedDOB2322" [(ngModel)]="reportproblem.memDOB" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid Member's mailing address 1</label>
+              <input class="form-control" type="text" name="address1qwe12" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid Member's mailing address 2</label>
+              <input class="form-control" type="text" name="address2eqw23" [(ngModel)]="requestor.address2" readonly> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="cityasd5" [(ngModel)]="requestor.city" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input class="form-control" type="text" name="statewqe8" [(ngModel)]="requestor.state" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip2a123" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showProviderOriginal" id="showProviderOriginal">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="  form-group col-md-6">
+              <label>Requestor's first name</label>
+              <input class="form-control" autocomplete="off" type="text" name="usrnm368" [(ngModel)]="requestor.firstName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name</label>
+              <input class="form-control" type="text" autocomplete="off" name="lname12857" [(ngModel)]="requestor.lastName" required readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone</label>
+              <input class="form-control" type="text" autocomplete="off" name="phone1828" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email</label>
+              <input class="form-control" type="email" name="emailUser3569" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                type="email" [(ngModel)]="requestor.email" readonly>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtd369" [(ngModel)]="requestor.preferredContact" disabled="true">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organ3569" [(ngModel)]="requestor.organizationName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" name="fax2123" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address1432" [(ngModel)]="requestor.address1" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address2543" [(ngModel)]="requestor.address2" readonly> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="city654" [(ngModel)]="requestor.city" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input class="form-control" type="text" name="state765" [(ngModel)]="requestor.state" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip2876" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showOtherOriginal" id="showOtherOriginal">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's first name</label>
+              <input class="form-control" autocomplete="off" type="text" name="usrnm987" [(ngModel)]="requestor.firstName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name</label>
+              <input class="form-control" type="text" autocomplete="off" name="lname2987" [(ngModel)]="requestor.lastName" required readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone</label>
+              <input class="form-control" type="text" autocomplete="off" name="phone280" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email</label>
+              <input class="form-control" type="email" name="emailUser676" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                type="email" [(ngModel)]="requestor.email" readonly>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtd678978-" [(ngModel)]="requestor.preferredContact" disabled="true">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organ89" [(ngModel)]="requestor.organizationName" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" name="fax4543" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address1464" [(ngModel)]="requestor.address1" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address274534" [(ngModel)]="requestor.address2" readonly> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="city7756453" [(ngModel)]="requestor.city" readonly>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <input class="form-control" type="text" name="state45" [(ngModel)]="requestor.state" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip21532" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showMedicaidEdit" id="showMedicaidEdit">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's first name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" autocomplete="off" type="text" name="memusrnm1346342" #memfname="ngModel" [(ngModel)]="reportproblem1.memFirstname"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="memfname.touched" style="color:red">
+                <div *ngIf="memfname.errors?.required">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's last name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="memlname62547" #memlname="ngModel" [(ngModel)]="reportproblem1.memLastname"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="memlname.touched" style="color:red">
+                <div *ngIf="memlname.errors?.required">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's phone number
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="memphone37357" [(ngModel)]="reportproblem1.memPhone" mask='000-000-0000'
+                maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #memberphone2="ngModel" [disabled]="edit" required>
+              <div *ngIf="memberphone2.touched" style="color:red">
+                <div *ngIf="memberphone2.errors?.required">
+                  Phone number is required
+                </div>
+              </div>
+              <div *ngIf="memberphone2.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="memberphone2.errors?.pattern">
+                  Please enter 10 digit phone number. Example: 123-456-7890
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's email
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="email" name="mememailUser76548" id="emailini" type="email" #memEmail123="ngModel" [(ngModel)]="reportproblem1.memEmail"
+                (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                maxlength="100" [disabled]="edit" required>
+              <div *ngIf="memEmail123.touched" style="color:red">
+                <div *ngIf="memEmail123.errors?.required">
+                  Email is required
+                </div>
+              </div>
+              <div *ngIf="memEmail123.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="memEmail123.errors?.pattern">
+                  Please type your email address in the format: mail@example.xyz
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmt7765d" [(ngModel)]="requestor1.preferredContact">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="address1579" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address1"
+                maxlength="100" #address1579="ngModel" [disabled]="edit" required>
+              <div *ngIf="address1579.touched" style="color:red">
+                <div *ngIf="address1579.errors?.required">
+                  Mailing address 1 is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address275559" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.address2" [disabled]="edit" maxlength="100"> </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="city11231" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city"
+                maxlength="100" #city11231="ngModel" [disabled]="edit" required>
+              <div *ngIf="city11231.touched" style="color:red">
+                <div *ngIf="city11231.errors?.required">
+                  City is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State
+                <font color="red">*</font>
+              </label>
+              <select class="form-control" type="text" name="state4234" [(ngModel)]="requestor1.state" #state4234="ngModel" [disabled]="edit" required>
+                <option [ngValue]="undefined" selected>Choose...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+              <div *ngIf="state4234.touched" style="color:red">
+                <div *ngIf="state4234.errors?.required">
+                  City is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="zip223652" pattern="(\d{5}([\-]\d{4})?)" #zip="ngModel" [(ngModel)]="requestor1.zipcode"
+                minlength="5" maxlength="5" #zip223652="ngModel" [disabled]="edit" required>
+              <div style="color:red" *ngIf="zip.errors?.pattern">
+                Zip code is invalid
+              </div>
+              <div *ngIf="zip223652.touched" style="color:red">
+                <div *ngIf="zip223652.errors?.required">
+                  Zip code is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's ID number</label>
+              <input class="form-control" type="text" name="MedId63456" #mId="ngModel" [(ngModel)]="reportproblem1.memMedID" (keypress)="omit_special_char($event,$event.target.value)"
+                minlength="12" [disabled]="edit" maxlength="12">
+              <div style="color:red" [hidden]="mId.valid || mId.pristine">
+                Medicaid ID Number is invalid
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's social security number</label>
+              <input class="form-control" type="text" name="MedSSN474" [(ngModel)]="reportproblem1.memSSN" mask='000-00-0000' maxlength="11"
+                (keypress)="omit_special_char($event,$event.target.value)" #ssn1="ngModel" pattern="^\d{3}-?\d{2}-?\d{4}$" [disabled]="edit">
+              <div *ngIf="ssn1.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="ssn1.errors?.pattern">
+                  Medicaid member's social security number is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's date of birth
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="MedDOB7457" #MedDOB7457="ngModel" [(ngModel)]="reportproblem1.memDOB" [disabled]="edit" required>
+              <div *ngIf="MedDOB7457.touched" style="color:red">
+                <div *ngIf="MedDOB7457.errors?.required">
+                  Date of birth is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]
+                readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showAssistingEdit" id="showAssistingEdit">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Relationship to the medicaid member</label>
+              <input class="form-control" type="text" autocomplete="off" name="relationship47457" [(ngModel)]="reportproblem1.relationship"
+                required  readonly>
+              <textarea class="form-control" style="margin-top:2%" rows="3" type="text" autocomplete="off" name="otherRelationship" *ngIf="otherRelationship"
+                [(ngModel)]="reportproblem1.relationshipOther" readonly></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's first name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" autocomplete="off" type="text" name="firstName25474" #fname="ngModel" [(ngModel)]="requestor1.firstName"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="fname.touched" style="color:red">
+                <div *ngIf="fname.errors?.required">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="lastName274578" #lname="ngModel" [(ngModel)]="requestor1.lastName"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="lname.touched" style="color:red">
+                <div *ngIf="lname.errors?.required">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="phone3856" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone1="ngModel" [disabled]="edit" required>
+              <div *ngIf="phone1.touched" style="color:red">
+                <div *ngIf="phone1.errors?.required">
+                  Phone number is required
+                </div>
+              </div>
+              <div *ngIf="phone1.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="phone1.errors?.pattern">
+                  Please enter 10 digit phone number. Example: 123-456-7890
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="email" name="emailUser8569" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                maxlength="100" (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [disabled]="edit" required>
+              <div *ngIf="emailUser.touched" style="color:red">
+                <div *ngIf="emailUser.errors?.required">
+                  Email is required
+                </div>
+              </div>
+              <div *ngIf="emailUser.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                  Please type your email address in the format: mail@example.xyz
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtd606" [(ngModel)]="requestor1.preferredContact">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organ54783" [(ngModel)]="requestor1.organizationName" [disabled]="edit" maxlength="100">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" [(ngModel)]="requestor1.fax" mask='000-000-0000' name="fax4" maxlength="12" [disabled]="edit" pattern="^\d{3}-?\d{3}-?\d{4}$"
+                #faxnumber1="ngModel">
+              <div *ngIf="faxnumber1.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="faxnumber1.errors?.pattern">
+                  Please enter 10 digit fax number. Example: 123-456-7890.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address124asd72" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.address1" maxlength="100" #address124asd72="ngModel" [disabled]="edit">
+              <div *ngIf="address124asd72.touched" style="color:red">
+                <div *ngIf="address124asd72.errors?.required">
+                  Mailing address 1 is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address23sd" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                maxlength="100" [disabled]="edit">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="city3683" #city83="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.city" maxlength="100" [disabled]="edit">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <select class="form-control" type="text" name="state23da" #state23da="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.state" [disabled]="edit">
+                <option [ngValue]="undefined" selected>Choose...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+              <div *ngIf="state23da.touched" style="color:red">
+                <div *ngIf="state23da.errors?.required">
+                  State is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip2a23dad" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                minlength="5" maxlength="5" #zip2a23dad="ngModel" [disabled]="edit">
+              <div style="color:red" *ngIf="zip2a23dad.errors?.pattern">
+                Zip code is invalid
+              </div>
+              <div *ngIf="zip2a23dad.touched" style="color:red">
+                <div *ngIf="zip2a23dad.errors?.required">
+                  Zip code is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4 id="requestorInfo">Medicaid Member's Information</h4>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's first name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" autocomplete="off" type="text" name="memusrnmahfaf" #memfname="ngModel" [(ngModel)]="reportproblem1.memFirstname"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="memfname.touched" style="color:red">
+                <div *ngIf="memfname.errors?.required">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's last name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="memlnameshfgh" #memlname="ngModel" [(ngModel)]="reportproblem1.memLastname"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="memlname.touched" style="color:red">
+                <div *ngIf="memlname.errors?.required">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's phone number</label>
+              <input class="form-control" type="text" autocomplete="off" name="memphone4sgjsj" [(ngModel)]="reportproblem1.memPhone" mask='000-000-0000'
+                maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #memberphone3="ngModel" [disabled]="edit">
+              <div *ngIf="memberphone3.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="memberphone3.errors?.pattern">
+                  Please enter 10 digit phone number. Example: 123-456-7890
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's email</label>
+              <input class="form-control" type="email" name="mememailUserghkd" id="emailini" type="email" #memEmail="ngModel" [(ngModel)]="reportproblem1.memEmail"
+                (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                maxlength="100" [disabled]="edit">
+              <!-- <div *ngIf="memEmail.touched" style="color:red">
+                <div *ngIf="memEmail.errors?.required">
+                  Email is required
+                </div>
+              </div> -->
+              <div *ngIf="memEmail.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="memEmail.errors?.pattern">
+                  Please type your email address in the format: mail@example.xyz
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's ID number</label>
+              <input class="form-control" type="text" name="MedIdfhhj" #mId="ngModel" [(ngModel)]="reportproblem1.memMedID" (keypress)="omit_special_char($event,$event.target.value)"
+                minlength="12" maxlength="12" [disabled]="edit">
+              <div style="color:red" [hidden]="mId.valid || mId.pristine">
+                Medicaid ID Number is invalid
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid member's social security number</label>
+              <input class="form-control" type="text" name="MedSSNhahasda" [(ngModel)]="reportproblem1.memSSN" mask='000-00-0000' maxlength="11"
+                (keypress)="omit_special_char($event,$event.target.value)" #ssn1="ngModel" [disabled]="edit" pattern="^\d{3}-?\d{2}-?\d{4}$">
+              <div *ngIf="ssn1.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="ssn1.errors?.pattern">
+                  Medicaid member's social security number is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid member's date of birth
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="MedDOB7457" #MedDOB7457="ngModel" [disabled]="edit" [(ngModel)]="reportproblem1.memDOB" required>
+              <div *ngIf="MedDOB7457.touched" style="color:red">
+                <div *ngIf="MedDOB7457.errors?.required">
+                  Date of birth is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Medicaid Member's mailing address 1
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="address124572" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.address1" maxlength="100" #address124572="ngModel" [disabled]="edit" required>
+              <div *ngIf="address124572.touched" style="color:red">
+                <div *ngIf="address124572.errors?.required">
+                  Medicaid Member's mailing address 1 is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Medicaid Member's mailing address 2</label>
+              <input class="form-control" type="text" name="address23686" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                maxlength="100" [disabled]="edit">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="city3683" #city3683="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.city" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="city3683.touched" style="color:red">
+                <div *ngIf="city3683.errors?.required">
+                  City is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State
+                <font color="red">*</font>
+              </label>
+              <select class="form-control" type="text" name="stateasgda" #stateasgda="ngModel" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)"
+                [(ngModel)]="requestor1.state" required>
+                <option [ngValue]="undefined" selected>Choose...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+              <div *ngIf="stateasgda.touched" style="color:red">
+                <div *ngIf="stateasgda.errors?.required">
+                  State is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" name="zip2adad" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                minlength="5" maxlength="5" #zip2adad="ngModel" [disabled]="edit" required>
+              <div style="color:red" *ngIf="zip2adad.errors?.pattern">
+                Zip code is invalid
+              </div>
+              <div *ngIf="zip2adad.touched" style="color:red">
+                <div *ngIf="zip2adad.errors?.required">
+                  Zip code is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showProviderEdit" id="showProviderEdit">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's first name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" autocomplete="off" type="text" #fname="ngModel" [(ngModel)]="requestor1.firstName" name="fname1asafdh"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="fname.touched" style="color:red">
+                <div *ngIf="fname.errors?.required">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" #lname="ngModel" [(ngModel)]="requestor1.lastName" name="lname3ahfah"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="lname.touched" style="color:red">
+                <div *ngIf="lname.errors?.required">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="phone4ahfawe" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone2="ngModel" [disabled]="edit" required>
+              <div *ngIf="phone2.touched" style="color:red">
+                <div *ngIf="phone2.errors?.required">
+                  Phone number is required
+                </div>
+              </div>
+              <div *ngIf="phone2.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="phone2.errors?.pattern">
+                  Please enter 10 digit phone number. Example: 123-456-7890
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="email" name="emailUsersmgs" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                maxlength="100" [disabled]="edit" required>
+              <div *ngIf="emailUser.touched" style="color:red">
+                <div *ngIf="emailUser.errors?.required">
+                  Email is required
+                </div>
+              </div>
+              <div *ngIf="emailUser.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                  Please type your email address in the format: mail@example.xyz
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtdajaf" [(ngModel)]="requestor1.preferredContact">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organaafad" [(ngModel)]="requestor1.organizationName" maxlength="100">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" [(ngModel)]="requestor1.fax" mask='000-000-0000' name="fax10adga" maxlength="12"
+                pattern="^\d{3}-?\d{3}-?\d{4}$" #faxnumber2="ngModel" [disabled]="edit">
+              <div *ngIf="faxnumber2.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="faxnumber2.errors?.pattern">
+                  Please enter 10 digit fax number. Example: 123-456-7890.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address1fadf" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address1"
+                maxlength="100" [disabled]="edit">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address2adga" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                maxlength="100" [disabled]="edit">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="cityadf" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city"
+                maxlength="100" [disabled]="edit">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <select class="form-control" type="text" name="staterewyea" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.state">
+                <option [ngValue]="undefined" selected>Choose...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" type="text" name="zip2yers" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                minlength="5" maxlength="5" [disabled]="edit">
+              <div style="color:red" *ngIf="zip.errors?.pattern">
+                Zip code is invalid
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]="config"
+                readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showOtherEdit" id="showOtherEdit">
+          <h4 id="requestorInfo">Requestor's Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's first name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" autocomplete="off" type="text" #fname="ngModel" [(ngModel)]="requestor1.firstName" name="fname2reshf"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="fname.touched" style="color:red">
+                <div *ngIf="fname.errors?.required">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's last name
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" #lname="ngModel" [(ngModel)]="requestor1.lastName" name="lname4sfgjs"
+                (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+              <div *ngIf="lname.touched" style="color:red">
+                <div *ngIf="lname.errors?.required">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Requestor's phone
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="text" autocomplete="off" name="phone5jdgs" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone3="ngModel" [disabled]="edit" required>
+              <div *ngIf="phone3.touched" style="color:red">
+                <div *ngIf="phone3.errors?.required">
+                  Phone number is required
+                </div>
+              </div>
+              <div *ngIf="phone3.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="phone3.errors?.pattern">
+                  Please enter 10 digit phone number. Example: 123-456-7890
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Requestor's email
+                <font color="red">*</font>
+              </label>
+              <input class="form-control" type="email" name="emailUserhsfgk" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                maxlength="100" [disabled]="edit" required>
+              <div *ngIf="emailUser.touched" style="color:red">
+                <div *ngIf="emailUser.errors?.required">
+                  Email is required
+                </div>
+              </div>
+              <div *ngIf="emailUser.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                  Please type your email address in the format: mail@example.xyz
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Preferred method of communication</label>
+              <select class="form-control" name="prfmtdsdfsg" [(ngModel)]="requestor1.preferredContact">
+                <option value="Phone">Phone</option>
+                <option value="Email">Email</option>
+                <option value="Phone and Email">Phone and Email</option>
+              </select>
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization name</label>
+              <input class="form-control" type="text" name="Organsjksg" [disabled]="edit" [(ngModel)]="requestor1.organizationName" maxlength="100">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Fax number</label>
+              <input class="form-control" type="text" [(ngModel)]="fax2" name="fax11ljkj">
+              <!-- <div *ngIf="fax.dirty" style="color:red">
+                <div class="help-block" style="color:red;" *ngIf="fax.errors?.pattern">
+                  Please enter 10 digit fax number. Example: 123-456-7890.
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Mailing address 1</label>
+              <input class="form-control" type="text" name="address1tytu" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address1"
+                maxlength="100">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Mailing address 2</label>
+              <input class="form-control" type="text" name="address2iyuy" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                maxlength="100">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" name="citydfe" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>State</label>
+              <select class="form-control" type="text" name="statedmdh" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.state">
+                <option [ngValue]="undefined" selected>Choose...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Zip code</label>
+              <input class="form-control" [disabled]="edit" type="text" name="zip2fjty" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                minlength="5" maxlength="5">
+              <div style="color:red" *ngIf="zip.errors?.pattern">
+                Zip code is invalid
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md" id="description">
+              <label for="number">Request description</label>
+              <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]="config"
+                readonly></textarea> -->
+              <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" *ngIf="showSplit" id="nav-split" role="tabpanel" aria-labelledby="nav-split-tab">
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showMedicaidOriginalSplit">
+            <h4 align="center" style="margin-top:-2%">Original</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's first name</label>
+                  <input class="form-control" autocomplete="off" type="text" name="memusrnmetuet" [(ngModel)]="reportproblem.memFirstname"
+                    readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's last name</label>
+                  <input class="form-control" type="text" autocomplete="off" name="memlnameityit" [(ngModel)]="reportproblem.memLastname" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's phone number</label>
+                  <input class="form-control" type="text" autocomplete="off" name="memphone5eyetye" [(ngModel)]="reportproblem.memPhone" mask='000-000-0000'
+                    readonly>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's email</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="email" name="mememailUserufy" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    type="email" [(ngModel)]="reportproblem.memEmail" readonly>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtdsjsf" [(ngModel)]="requestor.preferredContact" disabled="true">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1 </label>
+                  <input class="form-control" type="text" name="address1nsfg" [(ngModel)]="requestor.address1" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address2msgfg" [(ngModel)]="requestor.address2" readonly> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="citymsfg" [(ngModel)]="requestor.city" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input class="form-control" type="text" name="statemsgfg" [(ngModel)]="requestor.state" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip2mserw" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's ID number</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="text" name="MedIdnsf" [(ngModel)]="reportproblem.memMedID" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's social security number</label>
+                  <input class="form-control" type="text" name="MedSSNmsfg" [(ngModel)]="reportproblem.memSSN" mask='000-00-0000' readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's date of birth</label>
+                  <input class="form-control" type="text" name="MedDOBmsfwe" [(ngModel)]="reportproblem.memDOB" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showAssistingOriginalSplit">
+            <h4 align="center" style="margin-top:-2%">Original</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <label>Relationship to the medicaid member</label>
+                  <input class="form-control" type="text" autocomplete="off" name="relationship3253" [(ngModel)]="reportproblem.relationship"
+                    required readonly>
+                  <textarea class="form-control" style="margin-top:2%" rows="3" type="text" autocomplete="off" name="otherRelationship2436"
+                    *ngIf="otherRelationship" [(ngModel)]="reportproblem.relationshipOther" readonly></textarea>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name</label>
+                  <input class="form-control" autocomplete="off" type="text" name="firstName12346234" [(ngModel)]="requestor.firstName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name</label>
+                  <input class="form-control" type="text" autocomplete="off" name="lastName1123123" [(ngModel)]="requestor.lastName" required
+                    readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone</label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone14346345" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email</label>
+                  <input class="form-control" type="email" name="emailUser34645" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    type="email" [(ngModel)]="requestor.email" readonly>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd56456" [(ngModel)]="requestor.preferredContact" disabled="true">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ24654" [(ngModel)]="requestor.organizationName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" type="text" name="fax145745" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address1765745" [(ngModel)]="requestor.address1" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address245723" [(ngModel)]="requestor.address2" readonly> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city3465" [(ngModel)]="requestor.city" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input class="form-control" type="text" name="state7568" [(ngModel)]="requestor.state" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip28568" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+                </div>
+              </div>
+              <h4 id="requestorInfo">Medicaid Member's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's first name</label>
+                  <input class="form-control" autocomplete="off" type="text" name="memusrnm34765" [(ngModel)]="reportproblem.memFirstname"
+                    readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's last name</label>
+                  <input class="form-control" type="text" autocomplete="off" name="memlname85695" [(ngModel)]="reportproblem.memLastname" required
+                    readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's phone number</label>
+                  <input class="form-control" type="text" autocomplete="off" name="memphone25695" [(ngModel)]="reportproblem.memPhone" mask='000-000-0000'
+                    readonly>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's email</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="email" name="mememailUser467957" id="emailini" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    type="email" [(ngModel)]="reportproblem.memEmail" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's ID number</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="text" name="MedId3457" [(ngModel)]="reportproblem.memMedID" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's social security number</label>
+                  <input class="form-control" type="text" name="MedSSN56489" [(ngModel)]="reportproblem.memSSN" mask='000-00-0000' readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's date of birth</label>
+                  <input class="form-control" type="text" name="MedDOB2322" [(ngModel)]="reportproblem.memDOB" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid Member's mailing address 1</label>
+                  <input class="form-control" type="text" name="address1qwe12" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid Member's mailing address 2</label>
+                  <input class="form-control" type="text" name="address2eqw23" [(ngModel)]="requestor.address2" readonly> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="cityasd5" [(ngModel)]="requestor.city" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input class="form-control" type="text" name="statewqe8" [(ngModel)]="requestor.state" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip2a123" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showProviderOriginalSplit">
+            <h4 align="center" style="margin-top:-2%">Original</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name</label>
+                  <input class="form-control" autocomplete="off" type="text" name="usrnm13525" [(ngModel)]="requestor.firstName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name</label>
+                  <input class="form-control" type="text" autocomplete="off" name="lname51231" [(ngModel)]="requestor.lastName" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone</label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone92135" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email</label>
+                  <input class="form-control" type="email" name="emailUser23654" id="emailini6786" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    type="email" [(ngModel)]="requestor.email" readonly>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd69789" [(ngModel)]="requestor.preferredContact" disabled="true">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ345468" [(ngModel)]="requestor.organizationName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" type="text" name="fax13898574" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address146574" [(ngModel)]="requestor.address1" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address27432" [(ngModel)]="requestor.address2" readonly> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city67986" [(ngModel)]="requestor.city" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input class="form-control" type="text" name="state4563" [(ngModel)]="requestor.state" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip23453" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showOtherOriginalSplit">
+            <h4 align="center" style="margin-top:-2%">Original</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name</label>
+                  <input class="form-control" autocomplete="off" type="text" name="usrnm321" [(ngModel)]="requestor.firstName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name</label>
+                  <input class="form-control" type="text" autocomplete="off" name="lname61235" [(ngModel)]="requestor.lastName" required readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone</label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone10123" readonly [(ngModel)]="requestor.phone" mask='000-000-0000'>
+
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email</label>
+                  <input class="form-control" type="email" name="emailUser12312" id="emailini3424" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    type="email" [(ngModel)]="requestor.email" readonly>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd1351" [(ngModel)]="requestor.preferredContact" disabled="true">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ15325" [(ngModel)]="requestor.organizationName" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" type="text" name="fax14345" [(ngModel)]="requestor.fax" mask='000-000-0000' readonly>
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address1345" [(ngModel)]="requestor.address1" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address2345" [(ngModel)]="requestor.address2" readonly> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city123123" [(ngModel)]="requestor.city" readonly>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input class="form-control" type="text" name="state43242" [(ngModel)]="requestor.state" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip21345135" pattern="(\d{5}([\-]\d{4})?)" [(ngModel)]="requestor.zipcode"
+                    readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description" [ngxSummernoteView] readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showMedicaidEditSplit">
+            <h4 align="center" style="margin-top:-2%">Editable</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's first name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" autocomplete="off" type="text" name="memusrnm136" #memfname123="ngModel" [(ngModel)]="reportproblem1.memFirstname"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="memfname123.touched" style="color:red">
+                    <div *ngIf="memfname123.errors?.required">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's last name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="memlnameehe" #memlname321="ngModel" [(ngModel)]="reportproblem1.memLastname"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="memlname321.touched" style="color:red">
+                    <div *ngIf="memlname321.errors?.required">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's phone number
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="memphone7d1341" [(ngModel)]="reportproblem1.memPhone" mask='000-000-0000'
+                    maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #memberphone123="ngModel" [disabled]="edit" required>
+                  <div *ngIf="memberphone123.touched" style="color:red">
+                    <div *ngIf="memberphone123.errors?.required">
+                      Phone number is required
+                    </div>
+                  </div>
+                  <div *ngIf="memberphone123.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="memberphone123.errors?.pattern">
+                      Please enter 10 digit phone number. Example: 123-456-7890
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's email
+                    <font color="red">*</font>
+                  </label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="email" name="mememailUserd1d134" id="emailini" type="email" #memEmail="ngModel" [(ngModel)]="reportproblem1.memEmail"
+                    (keypress)="omit_special_char1($event,$event.target.value)" [disabled]="edit" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    maxlength="100" required>
+                  <div *ngIf="memEmail.touched" style="color:red">
+                    <div *ngIf="memEmail.errors?.required">
+                      Email is required
+                    </div>
+                  </div>
+                  <div *ngIf="memEmail.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="memEmail.errors?.pattern">
+                      Please type your email address in the format: mail@example.xyz
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd1d3124" [(ngModel)]="requestor1.preferredContact">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="address1adsfx2" #address1adsfx2="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.address1" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="address1adsfx2.touched" style="color:red">
+                    <div *ngIf="address1adsfx2.errors?.required">
+                      Mailing address 1 is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address2" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                    maxlength="100" [disabled]="edit"> </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="cityasdasdg" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city"
+                    maxlength="100" #cityasdasdg="ngModel" [disabled]="edit" required>
+                  <div *ngIf="cityasdasdg.touched" style="color:red">
+                    <div *ngIf="cityasdasdg.errors?.required">
+                      City is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State
+                    <font color="red">*</font>
+                  </label>
+                  <select class="form-control" type="text" name="stateasdga" #stateasdga="ngModel" [disabled]="edit" [(ngModel)]="requestor1.state" required>
+                    <option [ngValue]="undefined" selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                  <div *ngIf="stateasdga.touched" style="color:red">
+                    <div *ngIf="stateasdga.errors?.required">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="zip2" pattern="(\d{5}([\-]\d{4})?)" #zip12312as="ngModel" [(ngModel)]="requestor1.zipcode"
+                    minlength="5" maxlength="5" [disabled]="edit" required>
+                  <div style="color:red" *ngIf="zip12312as.errors?.pattern">
+                    Zip code is invalid
+                  </div>
+                  <div *ngIf="zip12312as.touched" style="color:red">
+                    <div *ngIf="zip12312as.errors?.required">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's ID number</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="text" name="MedId" #mId="ngModel" [(ngModel)]="reportproblem1.memMedID" (keypress)="omit_special_char($event,$event.target.value)"
+                    minlength="12" maxlength="12" [disabled]="edit">
+                  <div style="color:red" [hidden]="mId.valid || mId.pristine">
+                    Medicaid ID Number is invalid
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's social security number</label>
+                  <input class="form-control" type="text" name="MedSSN" [(ngModel)]="reportproblem1.memSSN" mask='000-00-0000' maxlength="11"
+                    (keypress)="omit_special_char($event,$event.target.value)" #ssn1="ngModel" [disabled]="edit" pattern="^\d{3}-?\d{2}-?\d{4}$">
+                  <div *ngIf="ssn1.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="ssn1.errors?.pattern">
+                      Medicaid member's social security number is invalid
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's date of birth
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="MedDOB7457" [disabled]="edit" #MedDOB7457="ngModel" [(ngModel)]="reportproblem1.memDOB" required>
+                  <div *ngIf="MedDOB7457.touched" style="color:red">
+                    <div *ngIf="MedDOB7457.errors?.required">
+                      Date of birth is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]
+                          readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showAssistingEditSplit">
+            <h4 align="center" style="margin-top:-2%">Editable</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <label>Relationship to the medicaid member</label>
+                  <input class="form-control" type="text" autocomplete="off" name="relationship47457" [(ngModel)]="reportproblem1.relationship"
+                    required readonly>
+                  <textarea class="form-control" style="margin-top:2%" rows="3" type="text" autocomplete="off" name="otherRelationship" *ngIf="otherRelationship"
+                    [(ngModel)]="reportproblem1.relationshipOther" readonly></textarea>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" autocomplete="off" type="text" name="firstName25474" #fname="ngModel" [(ngModel)]="requestor1.firstName"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="fname.touched" style="color:red">
+                    <div *ngIf="fname.errors?.required">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="lastName274578" #lname="ngModel" [(ngModel)]="requestor1.lastName"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="lname.touched" style="color:red">
+                    <div *ngIf="lname.errors?.required">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone3856" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                    maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone1="ngModel" [disabled]="edit" required>
+                  <div *ngIf="phone1.touched" style="color:red">
+                    <div *ngIf="phone1.errors?.required">
+                      Phone number is required
+                    </div>
+                  </div>
+                  <div *ngIf="phone1.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="phone1.errors?.pattern">
+                      Please enter 10 digit phone number. Example: 123-456-7890
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="email" name="emailUser8569" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                    maxlength="100" (keypress)="omit_special_char1($event,$event.target.value)" [disabled]="edit" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    required>
+                  <div *ngIf="emailUser.touched" style="color:red">
+                    <div *ngIf="emailUser.errors?.required">
+                      Email is required
+                    </div>
+                  </div>
+                  <div *ngIf="emailUser.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                      Please type your email address in the format: mail@example.xyz
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd606" [(ngModel)]="requestor1.preferredContact">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ54783" [disabled]="edit" [(ngModel)]="requestor1.organizationName" maxlength="100">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" type="text" [(ngModel)]="requestor1.fax" [disabled]="edit" mask='000-000-0000' name="fax4" maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$"
+                    #faxnumber1="ngModel">
+                  <div *ngIf="faxnumber1.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="faxnumber1.errors?.pattern">
+                      Please enter 10 digit fax number. Example: 123-456-7890.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address124asd72" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.address1" maxlength="100" [disabled]="edit" #address124asd72="ngModel">
+                  <div *ngIf="address124asd72.touched" style="color:red">
+                    <div *ngIf="address124asd72.errors?.required">
+                      Mailing address 1 is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address23sd" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                    maxlength="100">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city3683" #city83="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.city" maxlength="100" [disabled]="edit">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <select class="form-control" type="text" name="state23da" #state23da="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.state" [disabled]="edit">
+                    <option [ngValue]="undefined" selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                  <div *ngIf="state23da.touched" style="color:red">
+                    <div *ngIf="state23da.errors?.required">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip2a23dad" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                    minlength="5" maxlength="5" #zip2a23dad="ngModel" [disabled]="edit">
+                  <div style="color:red" *ngIf="zip2a23dad.errors?.pattern">
+                    Zip code is invalid
+                  </div>
+                  <div *ngIf="zip2a23dad.touched" style="color:red">
+                    <div *ngIf="zip2a23dad.errors?.required">
+                      Zip code is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 id="requestorInfo">Medicaid Member's Information</h4>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's first name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" autocomplete="off" type="text" name="memusrnmahfaf" #memfname="ngModel" [(ngModel)]="reportproblem1.memFirstname"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="memfname.touched" style="color:red">
+                    <div *ngIf="memfname.errors?.required">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's last name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="memlnameshfgh" #memlname="ngModel" [(ngModel)]="reportproblem1.memLastname"
+                    (keypress)="omit_special_char($event,$event.target.value)" [disabled]="edit" maxlength="100" required>
+                  <div *ngIf="memlname.touched" style="color:red">
+                    <div *ngIf="memlname.errors?.required">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's phone number</label>
+                  <input class="form-control" type="text" autocomplete="off" name="memphone4sgjsj" [(ngModel)]="reportproblem1.memPhone" mask='000-000-0000'
+                    maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #memberphone3="ngModel" [disabled]="edit">
+                  <div *ngIf="memberphone3.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="memberphone3.errors?.pattern">
+                      Please enter 10 digit phone number. Example: 123-456-7890
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's email</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="email" name="mememailUserghkd" id="emailini" type="email" #memEmail="ngModel" [(ngModel)]="reportproblem1.memEmail"
+                    (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    maxlength="100" [disabled]="edit">
+                  <!-- <div *ngIf="memEmail.touched" style="color:red">
+                    <div *ngIf="memEmail.errors?.required">
+                      Email is required
+                    </div>
+                  </div> -->
+                  <div *ngIf="memEmail.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="memEmail.errors?.pattern">
+                      Please type your email address in the format: mail@example.xyz
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's ID number</label>
+                  <br>
+                  <br>
+                  <input class="form-control" type="text" name="MedIdfhhj" #mId="ngModel" [(ngModel)]="reportproblem1.memMedID" (keypress)="omit_special_char($event,$event.target.value)"
+                    minlength="12" maxlength="12" [disabled]="edit">
+                  <div style="color:red" [hidden]="mId.valid || mId.pristine">
+                    Medicaid ID Number is invalid
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's social security number</label>
+                  <input class="form-control" type="text" name="MedSSNhahasda" [(ngModel)]="reportproblem1.memSSN" mask='000-00-0000' maxlength="11"
+                    (keypress)="omit_special_char($event,$event.target.value)" [disabled]="edit" #ssn1="ngModel" pattern="^\d{3}-?\d{2}-?\d{4}$">
+                  <div *ngIf="ssn1.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="ssn1.errors?.pattern">
+                      Medicaid member's social security number is invalid
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid member's date of birth
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="MedDOB7457" [disabled]="edit" #MedDOB7457="ngModel" [(ngModel)]="reportproblem1.memDOB" required>
+                  <div *ngIf="MedDOB7457.touched" style="color:red">
+                    <div *ngIf="MedDOB7457.errors?.required">
+                      Date of birth is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Medicaid Member's mailing address 1
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="address124572" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.address1" maxlength="100" #address124572="ngModel" [disabled]="edit" required>
+                  <div *ngIf="address124572.touched" style="color:red">
+                    <div *ngIf="address124572.errors?.required">
+                      Medicaid Member's mailing address 1 is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Medicaid Member's mailing address 2</label>
+                  <input class="form-control" type="text" name="address23686" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                    maxlength="100">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="city3683" #city3683="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.city" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="city3683.touched" style="color:red">
+                    <div *ngIf="city3683.errors?.required">
+                      City is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State
+                    <font color="red">*</font>
+                  </label>
+                  <select class="form-control" type="text" name="stateasgda" #stateasgda="ngModel" (keypress)="omit_special_char1($event,$event.target.value)"
+                    [(ngModel)]="requestor1.state" [disabled]="edit" required>
+                    <option [ngValue]="undefined" selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                  <div *ngIf="stateasgda.touched" style="color:red">
+                    <div *ngIf="stateasgda.errors?.required">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" name="zip2adad" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                    minlength="5" maxlength="5" #zip2adad="ngModel" [disabled]="edit" required>
+                  <div style="color:red" *ngIf="zip2adad.errors?.pattern">
+                    Zip code is invalid
+                  </div>
+                  <div *ngIf="zip2adad.touched" style="color:red">
+                    <div *ngIf="zip2adad.errors?.required">
+                      Zip code is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showProviderEditSplit">
+            <h4 align="center" style="margin-top:-2%">Editable</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" autocomplete="off" type="text" #fname="ngModel" [(ngModel)]="requestor1.firstName" name="fname3"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="fname.touched" style="color:red">
+                    <div *ngIf="fname.errors?.required">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" #lname="ngModel" [(ngModel)]="requestor1.lastName" name="lname7"
+                    (keypress)="omit_special_char($event,$event.target.value)" [disabled]="edit" maxlength="100" required>
+                  <div *ngIf="lname.touched" style="color:red">
+                    <div *ngIf="lname.errors?.required">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone12" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                    maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone5="ngModel" [disabled]="edit" required>
+                  <div *ngIf="phone5.touched" style="color:red">
+                    <div *ngIf="phone5.errors?.required">
+                      Phone number is required
+                    </div>
+                  </div>
+                  <div *ngIf="phone5.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="phone5.errors?.pattern">
+                      Please enter 10 digit phone number. Example: 123-456-7890
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="email" name="emailUser" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                    (keypress)="omit_special_char1($event,$event.target.value)" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="emailUser.touched" style="color:red">
+                    <div *ngIf="emailUser.errors?.required">
+                      Email is required
+                    </div>
+                  </div>
+                  <div *ngIf="emailUser.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                      Please type your email address in the format: mail@example.xyz
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd" [(ngModel)]="requestor1.preferredContact">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ" [disabled]="edit" [(ngModel)]="requestor1.organizationName" maxlength="100">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" type="text" [(ngModel)]="requestor1.fax" mask='000-000-0000' name="fax16" maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$"
+                    #faxnumber4="ngModel" [disabled]="edit">
+                  <div *ngIf="faxnumber4.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="faxnumber4.errors?.pattern">
+                      Please enter 10 digit fax number. Example: 123-456-7890.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address1" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address1"
+                    maxlength="100" [disabled]="edit">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address2" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                    maxlength="100" [disabled]="edit">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city"
+                    maxlength="100" [disabled]="edit">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <select class="form-control" type="text" name="state" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.state">
+                    <option [ngValue]="undefined" selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip2" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                    minlength="5" maxlength="5" [disabled]="edit">
+                  <div style="color:red" *ngIf="zip.errors?.pattern">
+                    Zip code is invalid
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]="config"
+                          readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formBox col-md-6" style="display:inline-table;" *ngIf="showOtherEditSplit">
+            <h4 align="center" style="margin-top:-2%">Editable</h4>
+            <div class="formBox">
+              <h4 id="requestorInfo">Requestor's Information</h4>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's first name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" autocomplete="off" type="text" #fname="ngModel" [(ngModel)]="requestor1.firstName" name="fname4"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="fname.touched" style="color:red">
+                    <div *ngIf="fname.errors?.required">
+                      First name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's last name
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" #lname="ngModel" [(ngModel)]="requestor1.lastName" name="lname"
+                    (keypress)="omit_special_char($event,$event.target.value)" maxlength="100" [disabled]="edit" required>
+                  <div *ngIf="lname.touched" style="color:red">
+                    <div *ngIf="lname.errors?.required">
+                      Last name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Requestor's phone
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="text" autocomplete="off" name="phone13" [(ngModel)]="requestor1.phone" mask='000-000-0000'
+                    maxlength="12" pattern="^\d{3}-?\d{3}-?\d{4}$" #phone6="ngModel" [disabled]="edit" required>
+                  <div *ngIf="phone6.touched" style="color:red">
+                    <div *ngIf="phone6.errors?.required">
+                      Phone number is required
+                    </div>
+                  </div>
+                  <div *ngIf="phone6.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="phone6.errors?.pattern">
+                      Please enter 10 digit phone number. Example: 123-456-7890
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Requestor's email
+                    <font color="red">*</font>
+                  </label>
+                  <input class="form-control" type="email" name="emailUser" id="emailini" type="email" #emailUser="ngModel" [(ngModel)]="requestor1.email"
+                    (keypress)="omit_special_char1($event,$event.target.value)" [disabled]="edit" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    maxlength="100" required>
+                  <div *ngIf="emailUser.touched" style="color:red">
+                    <div *ngIf="emailUser.errors?.required">
+                      Email is required
+                    </div>
+                  </div>
+                  <div *ngIf="emailUser.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="emailUser.errors?.pattern">
+                      Please type your email address in the format: mail@example.xyz
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Preferred method of communication</label>
+                  <select class="form-control" name="prfmtd" [(ngModel)]="requestor1.preferredContact">
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone and Email">Phone and Email</option>
+                  </select>
+                </div>
+              </div> -->
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Organization name</label>
+                  <input class="form-control" type="text" name="Organ" [disabled]="edit" [(ngModel)]="requestor1.organizationName" maxlength="100">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Fax number</label>
+                  <input class="form-control" [disabled]="edit" type="text" [(ngModel)]="fax2" name="fax17">
+                  <!-- <div *ngIf="fax.dirty" style="color:red">
+                    <div class="help-block" style="color:red;" *ngIf="fax.errors?.pattern">
+                      Please enter 10 digit fax number. Example: 123-456-7890.
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Mailing address 1</label>
+                  <input class="form-control" type="text" name="address1" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address1"
+                    maxlength="100" [disabled]="edit">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>Mailing address 2</label>
+                  <input class="form-control" type="text" name="address2" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.address2"
+                    maxlength="100" [disabled]="edit">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input class="form-control" type="text" name="city" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.city"
+                    maxlength="100" [disabled]="edit">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <select class="form-control" type="text" name="state" [disabled]="edit" (keypress)="omit_special_char1($event,$event.target.value)" [(ngModel)]="requestor1.state">
+                    <option [ngValue]="undefined" selected>Choose...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Zip code</label>
+                  <input class="form-control" type="text" name="zip2" #zip="ngModel" [(ngModel)]="requestor1.zipcode" pattern="(\d{5}([\-]\d{4})?)"
+                    minlength="5" maxlength="5" [disabled]="edit">
+                  <div style="color:red" *ngIf="zip.errors?.pattern">
+                    Zip code is invalid
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md" id="description">
+                  <label for="number">Request description</label>
+                  <!-- <textarea class="form-control" cols="2000" rows="7" id="summernote" name="purpose" [(ngModel)]="description1" [ngxSummernoteView]="config"
+                          readonly></textarea> -->
+                  <div class="form-control" style="height: auto;" [ngxSummernoteView]="reportproblem.description" readonly></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" *ngIf="showInsert" id="nav-insert" role="tabpanel"
+          aria-labelledby="nav-insert-tab">
+          <app-document></app-document>
+        </div>
+
+        <div class=" tab-pane fade" *ngIf="showHistoryPanel" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab">
+          <div class="top-space bottom-space" id="showHistory1" *ngIf="showHistory">
+            <div class="form-row">
+              <div class="form-group col-md" id="commentTable">
+                <h4 id="requestorInfo">Comments History</h4>
+                <!-- <div align="right">
+                    <button class="fa fa-print" aria-hidden="true" (click)="printComponent('showHistory1')" style="font-size:120%" title="Print table">Print table</button>
+                  </div> -->
+                <!-- <button (click)="printComponent('showHistory1')">Print table</button> -->
+                <table class="table table-striped table-bordered">
+                  <thead align="center">
+                    <tr class="tableHeader">
+                      <th>Reason Code</th>
+                      <th>Comments</th>
+                      <th>Comment By</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody align="left">
+                    <tr *ngFor="let comment of comments | paginate: { itemsPerPage: 15, currentPage: p,totalItems: total }">
+                      <!-- <td style="width:15%">{{comment.createdBy}}</td> -->
+                      <td style="width:15%">{{comment.reason.reasonCode}} - {{comment.reason.description}}</td>
+                      <td style="width:60%" [ngxSummernoteView]="comment.notes"></td>
+                      <td style="width:15%">{{comment.createdBy}}</td>
+                      <td style="width:10%">{{comment.createdTime}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-assign" role="tabpanel" aria-labelledby="nav-assign-tab" *ngIf="showAssign">
+          <app-assign></app-assign>
+        </div>
+        <div class="top-space bottom-space" *ngIf="showMove">
+          <app-moveto-cccplus></app-moveto-cccplus>
+        </div>
+
+      </div>
+      <div class="formBox top-space bottom-space" *ngIf="showComments">
+        <div class="form-row">
+          <div class="form-group col-md-6" *ngIf="showReason">
+            <label>Status
+              <font color="red">*</font>
+            </label>
+            <select id="inputState" (change)="clickStatus($event.target.value)" [disabled]="edit" [(ngModel)]="requestor1.status" name="status" class="form-control"
+              required>
+              <option value="Open">Open</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6" *ngIf="showReason">
+            <div *ngIf="openToOpenSelect">
+              <label>Reason</label>
+              <select id="inputState" name="reason1" class="form-control" [(ngModel)]="comment.reasonID" [disabled]="edit">
+                <option selected [ngValue]="undefined">Choose...</option>
+                <option *ngFor="let openList of openReasonList" [ngValue]="openList.id">{{openList.reasonCode}} - {{openList.description}}</option>
+              </select>
+            </div>
+            <div *ngIf="closeToOpenSelect">
+              <label>Reason</label>
+              <font color="red">*</font>
+              <select id="inputState" name="closeToOpen" class="form-control" [(ngModel)]="comment.reasonID" [disabled]="edit" required>
+                <option selected [ngValue]="undefined">Choose...</option>
+                <option *ngFor="let openList of openReasonList" [ngValue]="openList.id">{{openList.reasonCode}} - {{openList.description}}</option>
+              </select>
+            </div>
+            <div *ngIf="closedSelect">
+              <label>Reason
+                <font color="red">*</font>
+              </label>
+              <select id="inputState" name="reason2" class="form-control" [(ngModel)]="comment.reasonID" [disabled]="edit" required>
+                <option selected [ngValue]="undefined">Choose...</option>
+                <option *ngFor="let closedList of closedReasonList" [ngValue]="closedList.id">{{closedList.reasonCode}} - {{closedList.description}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group col-md" id="description">
+            <label for="number">Comments
+              <font color="red">*</font>
+            </label>
+            <!-- <label class="requiredText">
+              <font color="red">*</font>Required fields
+            </label> -->
+            <tinymce  name="description" [(ngModel)]="comment.notes" [config]="config" [disabled]="edit" required='required'></tinymce>Remaining {{5000 -len}}
+          </div>
+        </div>
+      </div>
+
+      <p align="right" *ngIf="showSubmit">
+        <button type="cancel" class="btn btn-dark" (click)="navigateBack()" (click)="navigateBack()">Cancel</button>
+        <button type="submit" style="margin-left: 2px;" class="btn btn-dark" (click)="saveReportProblemRequest()" [disabled]="!editPro.form.valid">Save</button>
+      </p>
+    </div>
+  </form>
+</form>
+
+

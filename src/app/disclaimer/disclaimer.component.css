@@ -1,0 +1,157 @@
+.navbar1 {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .1rem 1rem;
+    overflow: hidden;
+}
+
+.p-4 {
+    background-color: #212529;
+    border-top: 1px solid #ECF0F1;
+}
+
+nav {
+    background-color: #212529;
+    text-align: center;
+    position: relative;
+}
+
+.heading {
+    color: white;
+    text-align: center;
+}
+
+img {
+    width: 21%;
+}
+
+.login {
+    color: white;
+    font-size: 10px;
+    margin-top: 15px;
+    margin-right: 8px;
+}
+
+h2 {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+h1 {
+    color: white;
+}
+
+.dashboard {
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 5%;
+    /*position: absolute;
+        top: 25%;
+        left: 5%;*/
+}
+
+.card {
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 15px;
+}
+
+.card-heading {
+    background-color: #3A539B;
+    border-radius: 6%;
+}
+
+.card-title {
+    padding: 4%;
+    color: white;
+}
+
+.card-body {
+    background-color: #ECF0F1;
+}
+
+.card-link {
+    color: black;
+}
+
+.card-link:hover {
+    color: white;
+    background-color: #00B16A;
+    padding: 3%;
+}
+
+.view-edit {
+    margin-left: 20px;
+}
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    border: darkgray, solid;
+    background: aliceblue;
+}
+
+#form1 {
+    border-radius: 10px;
+    margin: -1% 7% 0% 5%;
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    padding: 4%;
+    box-shadow: none;
+    border:none;
+}
+
+.infoBox {
+    padding: 3%;
+    border: 2px solid;
+    border-radius: 7px;
+    padding-top: 0;
+    margin: -1%;
+    min-width: 103%;
+    display: inline-block;
+    background: rgb(255, 255, 255);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+    -webkit-box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1);
+    -moz-box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1);
+    box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1);
+}
+
+.headerOfBox {
+    margin-bottom: 2%;
+    margin-left: -3% !important;
+    margin-right: -3% !important;
+    color: white;
+    background: rgb(125,126,125); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+    /* background: rgb(125,126,125);
+    Old browsers
+    background: -moz-linear-gradient(top, rgba(30, 87, 153, 1) 0%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(125, 185, 232, 1) 100%);
+    FF3.6-15
+    background: -webkit-linear-gradient(top, rgba(30, 87, 153, 1) 0%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(125, 185, 232, 1) 100%);
+    Chrome10-25,Safari5.1-6
+    background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(125, 185, 232, 1) 100%);
+    W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+ */ padding-left: 2%;
+    box-sizing: border-box;
+    border-radius: 7px;
+    padding-bottom: 1px;
+}
